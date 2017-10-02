@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, KeyboardAvoidingView } from 'react-native';
 import LoginForm from './LoginForm';
+import Firebase from '../Firebase/Firebase';
 
 export default class Login extends Component {
 

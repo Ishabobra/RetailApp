@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text, StatusBar } from 'react-native';
-import * as firebase from "firebase";
+import AuthMethods from '../Auth/AuthMethods';
 
 export default class LoginForm extends Component {
+
+	constructor(props){
+    super(props);
+    
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+	_onItemPressed(item){
+       AuthMethods.login(this.state.email,this.state.password);
+    }
 
     render() {
     return (
@@ -17,6 +30,8 @@ export default class LoginForm extends Component {
           autoCapitalize="none"
           autoCorrect={false}	
           style={styles.input}
+          onChangeText={(text) => this.setState({email: text})}
+          value={this.state.email}
         />
         <TextInput 
           placeholder = "Password"
@@ -24,8 +39,11 @@ export default class LoginForm extends Component {
           secureTextEntry
           style={styles.input}
           ref={(input) => this.passwordInput = input}
+          onChangeText={(text) => this.setState({password: text})}
+          value={this.state.password}
         />
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.buttonContainer}
+          onPress={this._onItemPressed.bind(this)}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
