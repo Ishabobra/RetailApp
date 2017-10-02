@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navigator } from "react-native";
 import * as firebase from "firebase";
-import MainPage from '../Home/MainPage';
+import MainPage from '../../../MainPage';
 
 export default class AuthMethods extends Component{
 
@@ -38,7 +38,7 @@ export default class AuthMethods extends Component{
             .signInWithEmailAndPassword("isha.bobra@gmail.com", "123456")
 
 
-        console.log("Logged In..");
+        console.log("Logged In!");
         {this.changeState}
 
     } catch (error) {

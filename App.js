@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/components/Login/Login';
+import Login from './Login';
 import Firebase from './src/components/Firebase/Firebase';
 import * as firebase from "firebase";
+import { StackNavigator } from 'react-navigation';
+import MainPage from './MainPage';
 
-export default class RetailApp extends Component {
+/*export default class RetailApp extends Component {
 
   constructor(props) {
     super(props);
@@ -17,14 +19,10 @@ export default class RetailApp extends Component {
         <Login />
       );
     }
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+}*/
+const RetailApp = StackNavigator({
+  Home: { screen: Login },
+  MainPage: { screen: MainPage},
 });
+
+export default RetailApp;
