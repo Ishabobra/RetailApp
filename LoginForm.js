@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text, StatusBar } from 'react-native';
-import AuthMethods from './src/components/Auth/AuthMethods';
+//import AuthMethods from './src/components/Auth/AuthMethods';
 import MainPage from './MainPage';
 import Login from './Login';
 import { StackNavigator } from 'react-navigation';
 import Firebase from './src/components/Firebase/Firebase';
+import * as firebase from "firebase";
 
 export default class LoginForm extends Component {
 
@@ -22,18 +23,33 @@ export default class LoginForm extends Component {
     Firebase.initialise();
   }
 
-	_onItemPressed(item){
-       AuthMethods.login(this.state.email,this.state.password).then((userData) =>
+	async _onItemPressed(item){
+   /*    AuthMethods.login(this.state.email,this.state.password).then((userData) =>
       {
         this.setState({loaded: true})
         console.log(this.state);
         this.props.navProp.navigate('MainPage');
       }
     ).catch((error) =>
-        {
-            
+        {    
         alert('Login Failed. Please try again'+error);
-    });;
+    });*/
+      try {
+          //await firebase.auth()
+          //    .signInWithEmailAndPassword(this.state.email, this.state.password)
+          await firebase.auth()
+              .signInWithEmailAndPassword("isha.bobra@gmail.com", "123456")
+          this.setState({loaded: true})
+          console.log(this.state);
+          this.setState({email: "",
+                         password: ""
+                        })
+          this.props.navProp.navigate('MainPage');
+
+      } catch (error) {
+          //console.log(error.toString())
+          alert('Login Failed. Please try again'+error);
+      }
     }
 
     render() {
