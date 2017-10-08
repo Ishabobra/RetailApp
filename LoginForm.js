@@ -3,7 +3,6 @@ import { StyleSheet, TextInput, View, TouchableOpacity, Text, StatusBar } from '
 //import AuthMethods from './src/components/Auth/AuthMethods';
 import MainPage from './MainPage';
 import Login from './Login';
-import { StackNavigator } from 'react-navigation';
 import Firebase from './src/components/Firebase/Firebase';
 import * as firebase from "firebase";
 

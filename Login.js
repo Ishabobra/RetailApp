@@ -15,7 +15,7 @@ export default class Login extends Component {
           <Text style={styles.title}>An app for distribution agencies</Text>
         </View>
         <View style={styles.formContainer}>
-          <LoginForm navProp={'this.props.navigation'}/>
+          <LoginForm navProp={this.props.navigation}/>
         </View>
       </KeyboardAvoidingView>
     );
