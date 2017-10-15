@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import * as firebase from "firebase";
+import FinalPage from './FinalPage';
 
 export default class MainPage extends Component {
 
 	_onItemPressedNext(item){
-
+		this.props.navigation.navigate('FinalPage');
 	}
+
 	async _onItemPressedLogout(item){
 		try {
 
@@ -54,6 +56,7 @@ export default class MainPage extends Component {
 	    }];
 	 
 	    return (
+	    <KeyboardAvoidingView behaviour="padding" style={styles.container1}>	
 	    <View style={styles.container}>
 	    <View style={styles.dropdown}>
 	      <Dropdown 
@@ -68,7 +71,8 @@ export default class MainPage extends Component {
 	      />
 	      </View>
 	       <View>
-	       <TouchableOpacity style={styles.buttonContainer}>
+	       <TouchableOpacity style={styles.buttonContainer}
+	       onPress={this._onItemPressedNext.bind(this)}>
 		     <Text style={styles.buttonText}>NEXT</Text>
 		   </TouchableOpacity>
 		   <TouchableOpacity style={styles.buttonContainer}
@@ -78,6 +82,7 @@ export default class MainPage extends Component {
 		   </TouchableOpacity>
 		   </View>
 		   </View>
+		   </KeyboardAvoidingView>
 	    );
   }
 }
@@ -86,7 +91,13 @@ const styles = StyleSheet.create({
   dropdown: {
     flexGrow:1,
   },
+  container1: {
+    flex: 1,
+    backgroundColor: '#3498db',
+  },
   container: {
+  	padding: 20,
+  	marginTop: 40,
     flex: 1,
     backgroundColor: '#3498db',
   },

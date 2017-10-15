@@ -5,6 +5,7 @@ import Firebase from './src/components/Firebase/Firebase';
 import * as firebase from "firebase";
 import { StackNavigator } from 'react-navigation';
 import MainPage from './MainPage';
+import FinalPage from './FinalPage';
 
 /*export default class RetailApp extends Component {
 
@@ -21,8 +22,10 @@ import MainPage from './MainPage';
     }
 }*/
 const RetailApp = StackNavigator({
-  Home: { screen: Login },
-  MainPage: { screen: MainPage},
+  Home: { screen: Login, navigationOptions: { header: null } },
+  MainPage: { screen: MainPage, navigationOptions: { header: null }},
+  FinalPage: { screen: FinalPage, navigationOptions: { header: null }},
+
 });
 
 export default RetailApp;
