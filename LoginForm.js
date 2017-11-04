@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text, StatusBar } from 'react-native';
-//import AuthMethods from './src/components/Auth/AuthMethods';
 import MainPage from './MainPage';
 import Login from './Login';
 import Firebase from './src/components/Firebase/Firebase';
@@ -23,16 +22,6 @@ export default class LoginForm extends Component {
   }
 
 	async _onItemPressed(item){
-   /*    AuthMethods.login(this.state.email,this.state.password).then((userData) =>
-      {
-        this.setState({loaded: true})
-        console.log(this.state);
-        this.props.navProp.navigate('MainPage');
-      }
-    ).catch((error) =>
-        {    
-        alert('Login Failed. Please try again'+error);
-    });*/
       try {
           //await firebase.auth()
           //    .signInWithEmailAndPassword(this.state.email, this.state.password)

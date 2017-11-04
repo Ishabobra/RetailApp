@@ -7,20 +7,6 @@ import { StackNavigator } from 'react-navigation';
 import MainPage from './MainPage';
 import FinalPage from './FinalPage';
 
-/*export default class RetailApp extends Component {
-
-  constructor(props) {
-    super(props);
-
-    Firebase.initialise();
-  }
-
-  render() {
-      return (
-        <Login />
-      );
-    }
-}*/
 const RetailApp = StackNavigator({
   Home: { screen: Login, navigationOptions: { header: null } },
   MainPage: { screen: MainPage, navigationOptions: { header: null }},

@@ -11,7 +11,7 @@ export default class Login extends Component {
           <Image 
             style={styles.logo}
             source={require('./src/images/logo1.png')} 
-            />
+          />
           <Text style={styles.title}>An app for distribution agencies</Text>
         </View>
         <View style={styles.formContainer}>

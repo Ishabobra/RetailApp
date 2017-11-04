@@ -41,7 +41,7 @@ export default class FinalPage extends Component {
           placeholder = "Amount realised"
           placeholderTextColor="rgba(255,255,255,0.7)"
           returnKeyType="next"
-          onSubmitEditing={() => this.credit.focus()}
+          //onSubmitEditing={() => this.LogoutButton.focus()}
           keyboardType="numeric"	
           style={styles.input}
           onChangeText={(text) => this.setState({invoice_amount: text})}
@@ -50,6 +50,7 @@ export default class FinalPage extends Component {
       </View>
       <View>
          <TouchableOpacity style={styles.buttonContainer}
+         	//ref={(input) => this.LogoutButton = input}
 		   	onPress={this._onItemPressedLogout.bind(this)}>
 		     <Text style={styles.buttonText}>LOGOUT</Text>
 		   </TouchableOpacity>
