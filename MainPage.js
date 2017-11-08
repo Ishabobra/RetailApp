@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput,Text, View, Image, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import * as firebase from "firebase";
+import Login from './Login';
 import FinalPage from './FinalPage';
 
 export default class MainPage extends Component {
@@ -54,34 +55,72 @@ export default class MainPage extends Component {
 	    }, {
 	      value: 'A6',
 	    }];
+	    let creditNotes = [{
+	      value: 'CN1',
+	    }, {
+	      value: 'CN2',
+	    }, {
+	      value: 'CN3',
+	    }, {
+	      value: 'CN4',
+	    }, {
+	      value: 'CN5',
+	    }, {
+	      value: 'CN6',
+	    }];
+
+	    let cost=100;
 	 
 	    return (
 	    <KeyboardAvoidingView behaviour="padding" style={styles.container1}>	
 	    <View style={styles.container}>
-	    <View style={styles.dropdown}>
-	      <Dropdown 
-	        label='Select Shop'
-	        data={shops}
-	        textColor='rgba(41, 128, 185,1.0)'
-	      />
-	      <Dropdown 
-	        label='Select Invoice'
-	        data={invoices}
-	        textColor='rgba(41, 128, 185,1.0)'
-	      />
-	      </View>
-	       <View>
-	       <TouchableOpacity style={styles.buttonContainer}
-	       onPress={this._onItemPressedNext.bind(this)}>
-		     <Text style={styles.buttonText}>NEXT</Text>
-		   </TouchableOpacity>
-		   <TouchableOpacity style={styles.buttonContainer}
-		   	onPress={this._onItemPressedLogout.bind(this)}>
-		     <Text style={styles.buttonText}>LOGOUT</Text>
+		    <View style={styles.dropdown}>
+		      <Dropdown 
+		        label='Select Shop'
+		        data={shops}
+		        textColor='rgba(41, 128, 185,1.0)'
+		      />
+		      <Dropdown 
+		        label='Select Invoice'
+		        data={invoices}
+		        textColor='rgba(41, 128, 185,1.0)'
+		      />
+		      {/* Add credit voucher Need to change to multiselect dropdown */}
+			   <Dropdown 
+		        label='Credit Notes'
+		        data={creditNotes}
+		        textColor='rgba(41, 128, 185,1.0)'
+		      	/>
+		      <View style={{height: 10}} />
+		      <Text style={styles.baseText}>
+			    	Amount Due: {cost} 
+			  </Text>
+			  <View style={{height: 10}} />
+			   	<View style={styles.input} >
+			   		<Text style={{width: 100,fontSize: 20, fontWeight: 'bold'}}>
+			    	Amount Paid: 
+			  		</Text>
+		      		<TextInput
+			    		placeholder = "0.0"
+          				placeholderTextColor="rgba(0,0,0,0.7)"
+		          		keyboardType="numeric"
+		          		style={styles.paidBox}
 
-		   </TouchableOpacity>
-		   </View>
-		   </View>
+			    	/>
+			    </View>
+		    </View>
+		    <View>
+		        <TouchableOpacity style={styles.buttonContainer}
+		        onPress={this._onItemPressedNext.bind(this)}>
+			    <Text style={styles.buttonText}>NEXT</Text>
+			    </TouchableOpacity>
+			    <TouchableOpacity style={styles.buttonContainer}
+			   	onPress={this._onItemPressedLogout.bind(this)}>
+			    <Text style={styles.buttonText}>LOGOUT</Text>
+
+				</TouchableOpacity>
+			</View>
+		 </View>
 		   </KeyboardAvoidingView>
 	    );
   }
@@ -110,5 +149,16 @@ const styles = StyleSheet.create({
   	textAlign: 'center',
   	color: '#FFF',
   	fontWeight: '700'
+  },
+  paidBox: {
+  	marginBottom: 10,
+  	color: '#FFF',
+  	width: 100,
+  	fontSize: 20, 
+  	fontWeight: 'bold',
+  },
+  input: {
+  	height: 30,
+  	flexDirection: 'row',
   },
  });
