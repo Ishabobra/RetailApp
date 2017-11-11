@@ -4,7 +4,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import * as firebase from "firebase";
 import Login from './Login';
 import FinalPage from './FinalPage';
-
+import LoginForm from './LoginForm';
 export default class MainPage extends Component {
 
 	_onItemPressedNext(item){
@@ -75,39 +75,38 @@ export default class MainPage extends Component {
 	    <KeyboardAvoidingView behaviour="padding" style={styles.container1}>	
 	    <View style={styles.container}>
 		    <View style={styles.dropdown}>
-		      <Dropdown 
-		        label='Select Shop'
-		        data={shops}
-		        textColor='rgba(41, 128, 185,1.0)'
-		      />
-		      <Dropdown 
-		        label='Select Invoice'
-		        data={invoices}
-		        textColor='rgba(41, 128, 185,1.0)'
-		      />
-		      {/* Add credit voucher Need to change to multiselect dropdown */}
-			   <Dropdown 
-		        label='Credit Notes'
-		        data={creditNotes}
-		        textColor='rgba(41, 128, 185,1.0)'
+		    	<Dropdown 
+			        label='Select Shop'
+			        data={shops}
+			        textColor='rgba(41, 128, 185,1.0)'
 		      	/>
-		      <View style={{height: 10}} />
-		      <Text style={styles.baseText}>
-			    	Amount Due: {cost} 
-			  </Text>
-			  <View style={{height: 10}} />
-			   	<View style={styles.input} >
-			   		<Text style={{width: 100,fontSize: 20, fontWeight: 'bold'}}>
+		      	<Dropdown 
+		        	label='Select Invoice'
+		        	data={invoices}
+		        	textColor='rgba(41, 128, 185,1.0)'
+		      	/>
+		      	{/* Add credit voucher Need to change to multiselect dropdown */}
+			   	<Dropdown 
+			        label='Credit Notes'
+			        data={creditNotes}
+			        textColor='rgba(41, 128, 185,1.0)'
+			    />
+			    <View style={{height: 10}} />
+			    <Text style={styles.textStyle}>
+				    Amount Due: {cost} 
+				</Text>
+				<View style={styles.input} >
+				<View style={{height: 10}} />
+			   		<Text style={styles.textStyle}>
 			    	Amount Paid: 
 			  		</Text>
 		      		<TextInput
-			    		placeholder = "0.0"
-          				placeholderTextColor="rgba(0,0,0,0.7)"
+			    		placeholder = "0.00"
+		  				placeholderTextColor="rgba(0,0,0,0.7)"
 		          		keyboardType="numeric"
 		          		style={styles.paidBox}
-
 			    	/>
-			    </View>
+				</View>
 		    </View>
 		    <View>
 		        <TouchableOpacity style={styles.buttonContainer}
@@ -151,14 +150,21 @@ const styles = StyleSheet.create({
   	fontWeight: '700'
   },
   paidBox: {
-  	marginBottom: 10,
-  	color: '#FFF',
   	width: 100,
   	fontSize: 20, 
   	fontWeight: 'bold',
+  	height: 40,
+  	marginBottom: 10,
+  	color: '#FFF',
+  	paddingHorizontal: 10
   },
   input: {
-  	height: 30,
+  	height: 40,
   	flexDirection: 'row',
+  },
+  textStyle: {
+  	fontSize: 20, 
+  	fontWeight: 'bold',
+  	marginTop: 10,
   },
  });
