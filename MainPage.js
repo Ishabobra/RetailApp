@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput,Text, View, Image, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
+import MultiSelect from 'react-native-multiple-select';
 import * as firebase from "firebase";
 import Login from './Login';
 import FinalPage from './FinalPage';
 import LoginForm from './LoginForm';
+import Voucher from './Voucher';
 export default class MainPage extends Component {
 
 	_onItemPressedNext(item){
@@ -86,11 +88,7 @@ export default class MainPage extends Component {
 		        	textColor='rgba(41, 128, 185,1.0)'
 		      	/>
 		      	{/* Add credit voucher Need to change to multiselect dropdown */}
-			   	<Dropdown 
-			        label='Credit Notes'
-			        data={creditNotes}
-			        textColor='rgba(41, 128, 185,1.0)'
-			    />
+			   	<Voucher/>
 			    <View style={{height: 10}} />
 			    <Text style={styles.textStyle}>
 				    Amount Due: {cost} 
