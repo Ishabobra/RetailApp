@@ -15,7 +15,7 @@ export default class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      loaded: 'false',
+      loaded: false,
     }
 
     Firebase.initialise();
@@ -29,10 +29,9 @@ export default class LoginForm extends Component {
               .signInWithEmailAndPassword("isha.bobra@gmail.com", "123456")
           this.setState({loaded: true})
           console.log(this.state);
-          this.setState({email: "",
-                         password: ""
-                        })
-          this.props.navProp.navigate('MainPage');
+          this.setState({password: ""});
+          //this.props.navProp.navigate('MainPage',{id: this.state.email});
+          this.props.navProp.navigate('MainPage',{email: 'VIVO PRAKASH'});  
 
       } catch (error) {
           //console.log(error.toString())

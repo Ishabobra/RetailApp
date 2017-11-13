@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, TextInput,Text, View, Image, KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import MultiSelect from 'react-native-multiple-select';
+import Firebase from './src/components/Firebase/Firebase';
 import * as firebase from "firebase";
 import Login from './Login';
 import FinalPage from './FinalPage';
 import LoginForm from './LoginForm';
 import Voucher from './Voucher';
 export default class MainPage extends Component {
+
+	/*constructor(props){
+		super(props);
+		this.state = {
+			email: this.props.navigation.state.email
+		};
+		console.log("id is "+this.props.navigation.state.email);
+	}*/
 
 	_onItemPressedNext(item){
 		this.props.navigation.navigate('FinalPage');
@@ -29,7 +38,17 @@ export default class MainPage extends Component {
 	}
 
     render() {
+    	const email = this.props.navigation.state.params.email;
+    	//const fbref =firebase.database().ref();
     	console.log("in Mainpage!");
+    	console.log(email);
+
+    	/*let data = firebase.database().ref().child(email).once('value', function(snapshot) {
+			var EmailID = firebase.database().ref(email+'/EmailId');
+		});*/
+    	var salesperson= firebase.database().ref('Salesperson').child(email+'/EmailId').key;
+    	console.log(salesperson);
+    	
 		let shops = [{
 	      value: 'Shop1',
 	    }, {
