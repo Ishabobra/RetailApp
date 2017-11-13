@@ -7,56 +7,67 @@ import MainPage from './MainPage';
 
 export default class Voucher extends Component {
 	
-	this.state = {
-    	selectedItems: []
-  	}
-
-  	this.items= [{
-	    id: 'voucher1',
-	    name: 'voucher1',
-	  }, {
-	    id: 'voucher2',
-	    name: 'voucher2',
-	  }, {
-	    id: 'voucher3',
-	    name: 'voucher3',
-	  }, {
-	    id: 'voucher4',
-	    name: 'voucher4',
-	  }, {
-	    id: 'voucher5',
-	    name: 'voucher5',
-	  }];
-  onSelectedItemsChange = selectedItems => {
-    this.setState({ selectedItems });
-  };
+	constructor(props){
+    super(props);
+    this.state = {
+      selectedItems: []
+    };
+  }
  
   render() {
+
+    let items= [{
+      id: 'voucher1',
+      name: 'voucher1',
+    }, {
+      id: 'voucher2',
+      name: 'voucher2',
+    }, {
+      id: 'voucher3',
+      name: 'voucher3',
+    }, {
+      id: 'voucher4',
+      name: 'voucher4',
+    }, {
+      id: 'voucher5',
+      name: 'voucher5',
+    }];
+
     const { selectedItems } = this.state;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container1}>
         <MultiSelect
-          hideTags
           items={items}
           uniqueKey="id"
           ref={(component) => { this.multiSelect = component }}
-          onSelectedItemsChange={this.onSelectedItemsChange}
+          onSelectedItemsChange={(selectedItems) => this.setState({ selectedItems })}
           selectedItems={selectedItems}
-          selectText="Pick Items"
-          searchInputPlaceholderText="Search Items..."
-          altFontFamily="ProximaNova-Light"
-          tagRemoveIconColor="#CCC"
-          tagBorderColor="#CCC"
-          tagTextColor="#CCC"
+          selectText="Pick Vouchers"
+          textColor ="rgba(41, 128, 185,1.0)"
+          searchInputPlaceholderText="Search Vouchers..."
+          //altFontFamily="ProximaNova-Light"
+          tagRemoveIconColor="rgba(41, 128, 185,1.0)"
+          tagBorderColor="rgba(41, 128, 185,1.0)"
+          tagTextColor="rgba(255, 255, 255,1.0)"
           selectedItemTextColor="#CCC"
           selectedItemIconColor="#CCC"
-          itemTextColor="#000"
+          itemTextColor="rgba(41, 128, 185,1.0)"
           searchInputStyle={{ color: '#CCC' }}
+          submitButtonColor = "#2980b9"
         />
-        <View>
-          {this.multiSelect.getSelectedItemsExt(selectedItems)}
-        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  dropdown: {
+    flexGrow:1,
+    backgroundColor: '#3498db',
+
+  },
+  container1: {
+    flex: 1,
+    backgroundColor: '#3498db',
+  },
+});

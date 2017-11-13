@@ -57,20 +57,7 @@ export default class MainPage extends Component {
 	    }, {
 	      value: 'A6',
 	    }];
-	    let creditNotes = [{
-	      value: 'CN1',
-	    }, {
-	      value: 'CN2',
-	    }, {
-	      value: 'CN3',
-	    }, {
-	      value: 'CN4',
-	    }, {
-	      value: 'CN5',
-	    }, {
-	      value: 'CN6',
-	    }];
-
+	   
 	    let cost=100;
 	 
 	    return (
