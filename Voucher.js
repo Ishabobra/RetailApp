@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import Firebase from './src/components/Firebase/Firebase';
 import * as firebase from "firebase";
@@ -29,13 +29,14 @@ export default class Voucher extends Component {
       id: 'voucher4',
       name: 'voucher4',
     }, {
-      id: 'voucher5',
-      name: 'voucher5',
+      id: 'xyz',
+      name: 'xyz',
     }];
 
     const { selectedItems } = this.state;
     return (
       <View style={styles.container1}>
+      <ScrollView>
         <MultiSelect
           items={items}
           uniqueKey="id"
@@ -43,31 +44,27 @@ export default class Voucher extends Component {
           onSelectedItemsChange={(selectedItems) => this.setState({ selectedItems })}
           selectedItems={selectedItems}
           selectText="Pick Vouchers"
-          textColor ="rgba(41, 128, 185,1.0)"
+          textColor ="rgba(204, 204, 204,1.0)"
           searchInputPlaceholderText="Search Vouchers..."
-          //altFontFamily="ProximaNova-Light"
           tagRemoveIconColor="rgba(41, 128, 185,1.0)"
           tagBorderColor="rgba(41, 128, 185,1.0)"
-          tagTextColor="rgba(255, 255, 255,1.0)"
+          tagTextColor="rgba(41, 128, 185,1.0)"
           selectedItemTextColor="#CCC"
           selectedItemIconColor="#CCC"
           itemTextColor="rgba(41, 128, 185,1.0)"
           searchInputStyle={{ color: '#CCC' }}
           submitButtonColor = "#2980b9"
         />
+      </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  dropdown: {
-    flexGrow:1,
-    backgroundColor: '#3498db',
-
-  },
   container1: {
     flex: 1,
-    backgroundColor: '#3498db',
+    backgroundColor: '#ffffff',
+     paddingVertical: 10,
   },
 });

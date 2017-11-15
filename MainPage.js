@@ -135,13 +135,13 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1,
-    backgroundColor: '#3498db',
+    backgroundColor: '#ffffff',
   },
   container: {
   	padding: 20,
   	marginTop: 40,
     flex: 1,
-    backgroundColor: '#3498db',
+    backgroundColor: '#ffffff',
   },
   buttonContainer: {
   	backgroundColor: "#2980b9",
