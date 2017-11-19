@@ -27,9 +27,9 @@ export default class MainPage extends Component {
 	  });
 	  });
       this.state = {
-			dealer: "",
 			invoices: [],
-			shops: shop1
+			shops: shop1,
+			vouchers: []
 		};
 	}
 
@@ -68,6 +68,19 @@ export default class MainPage extends Component {
 	      }   
 	  });
 	  });
+      let creditlist = []
+      var credits = firebase.database().ref('CREDITS/'+text);
+      credits.once("value").then(function(snapshot) {
+      	var key = snapshot.key;
+      	if (snapshot.child("Vouchers").exists()) {
+      		snapshot.child("Vouchers").forEach(function(childSnapshot) {
+      			var key = childSnapshot.child('Voucher No');
+      			creditlist.push({id: key.val(), name: key.val()});
+      			console.log("voucher: "+ key.val());
+      		});
+      	}
+      });
+      this.setState({vouchers: creditlist});
       this.setState({invoices: invoicelist});
 	}
 
@@ -106,7 +119,7 @@ export default class MainPage extends Component {
 		        	textColor='rgba(41, 128, 185,1.0)'
 		      	/>
 		      	{/* Add credit voucher Need to change to multiselect dropdown */}
-			   	<Voucher/>
+			   	<Voucher vouchers={this.state.vouchers}/>
 			    <View style={{height: 10}} />
 			    <Text style={styles.textStyle}>
 				    Amount Due: {cost} 
@@ -147,7 +160,7 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff'
   },
   container: {
   	padding: 20,

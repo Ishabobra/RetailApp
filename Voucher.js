@@ -16,35 +16,17 @@ export default class Voucher extends Component {
  
   render() {
 
-    let items= [{
-      id: 'voucher1',
-      name: 'voucher1',
-    }, {
-      id: 'voucher2',
-      name: 'voucher2',
-    }, {
-      id: 'voucher3',
-      name: 'voucher3',
-    }, {
-      id: 'voucher4',
-      name: 'voucher4',
-    }, {
-      id: 'xyz',
-      name: 'xyz',
-    }];
-
     const { selectedItems } = this.state;
     return (
       <View style={styles.container1}>
       <ScrollView>
         <MultiSelect
-          items={items}
+          items={this.props.vouchers}
           uniqueKey="id"
           ref={(component) => { this.multiSelect = component }}
           onSelectedItemsChange={(selectedItems) => this.setState({ selectedItems })}
           selectedItems={selectedItems}
           selectText="Pick Vouchers"
-          textColor ="rgba(204, 204, 204,1.0)"
           searchInputPlaceholderText="Search Vouchers..."
           tagRemoveIconColor="rgba(41, 128, 185,1.0)"
           tagBorderColor="rgba(41, 128, 185,1.0)"
@@ -54,6 +36,7 @@ export default class Voucher extends Component {
           itemTextColor="rgba(41, 128, 185,1.0)"
           searchInputStyle={{ color: '#CCC' }}
           submitButtonColor = "#2980b9"
+          textColor = "rgba(149, 165, 166,1.0)"
         />
       </ScrollView>
       </View>
@@ -65,6 +48,6 @@ const styles = StyleSheet.create({
   container1: {
     flex: 1,
     backgroundColor: '#ffffff',
-     paddingVertical: 10,
+    paddingVertical: 10
   },
 });
