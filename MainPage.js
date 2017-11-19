@@ -10,16 +10,65 @@ import LoginForm from './LoginForm';
 import Voucher from './Voucher';
 export default class MainPage extends Component {
 
-	/*constructor(props){
+	constructor(props){
 		super(props);
-		this.state = {
-			email: this.props.navigation.state.email
+		let shop1 = [];
+		const email = this.props.navigation.state.params.email;
+		var salesperson = firebase.database().ref('Salesperson/'+email);
+    	salesperson.once("value").then(function(snapshot) {
+	     snapshot.forEach(function(childSnapshot) {
+	     	var key = childSnapshot.key
+	      if (key == 'Dealers'){
+	      	childSnapshot.forEach(function(child2Snapshot) {
+	      	console.log(child2Snapshot.key);
+	      	shop1.push({value: child2Snapshot.key});
+	      	});
+	      }   
+	  });
+	  });
+      this.state = {
+			dealer: "",
+			invoices: [],
+			shops: shop1
 		};
-		console.log("id is "+this.props.navigation.state.email);
-	}*/
+	}
 
 	_onItemPressedNext(item){
 		this.props.navigation.navigate('FinalPage');
+	}
+
+	_onDealerSelected(text){
+		console.log("selected dealer: "+ text);
+		let invoicelist = []
+		const email = this.props.navigation.state.params.email;
+
+    	var salesperson = firebase.database().ref('Salesperson/'+email);
+    	salesperson.once("value").then(function(snapshot) {
+	     snapshot.forEach(function(childSnapshot) {
+	     	var key = childSnapshot.key
+	      if (key == 'Dealers'){
+	      	childSnapshot.forEach(function(child2Snapshot) {
+	      		var key = child2Snapshot.key;
+	      		//console.log("text: "+ text);
+		      	if(key == text) {
+		      		child2Snapshot.forEach(function(child3Snapshot) {
+			      		var key = child3Snapshot.key
+			      		if (key =='Invoices') {
+			      			child3Snapshot.forEach(function(child4Snapshot) {
+			      				var child = child4Snapshot.child('Invoice No');
+			      				//console.log(child.val());
+			      				invoicelist.push({value: child.val()});
+			      			});
+
+			      		}
+		      		});
+		      	}
+
+	      	});
+	      }   
+	  });
+	  });
+      this.setState({invoices: invoicelist});
 	}
 
 	async _onItemPressedLogout(item){
@@ -38,44 +87,6 @@ export default class MainPage extends Component {
 	}
 
     render() {
-    	const email = this.props.navigation.state.params.email;
-    	//const fbref =firebase.database().ref();
-    	console.log("in Mainpage!");
-    	console.log(email);
-
-    	/*let data = firebase.database().ref().child(email).once('value', function(snapshot) {
-			var EmailID = firebase.database().ref(email+'/EmailId');
-		});*/
-    	var salesperson= firebase.database().ref('Salesperson').child(email+'/EmailId').key;
-    	console.log(salesperson);
-    	
-		let shops = [{
-	      value: 'Shop1',
-	    }, {
-	      value: 'Shop2',
-	    }, {
-	      value: 'Shop3',
-	    }, {
-	      value: 'Shop4',
-	    }, {
-	      value: 'Shop5',
-	    }, {
-	      value: 'Shop6',
-	    }];
-
-	    let invoices = [{
-	      value: 'A1',
-	    }, {
-	      value: 'A2',
-	    }, {
-	      value: 'A3',
-	    }, {
-	      value: 'A4',
-	    }, {
-	      value: 'A5',
-	    }, {
-	      value: 'A6',
-	    }];
 	   
 	    let cost=100;
 	 
@@ -85,12 +96,13 @@ export default class MainPage extends Component {
 		    <View style={styles.dropdown}>
 		    	<Dropdown 
 			        label='Select Shop'
-			        data={shops}
+			        data={this.state.shops}
 			        textColor='rgba(41, 128, 185,1.0)'
+			        onChangeText = {(text) => this._onDealerSelected(text) }
 		      	/>
 		      	<Dropdown 
 		        	label='Select Invoice'
-		        	data={invoices}
+		        	data={this.state.invoices}
 		        	textColor='rgba(41, 128, 185,1.0)'
 		      	/>
 		      	{/* Add credit voucher Need to change to multiselect dropdown */}
